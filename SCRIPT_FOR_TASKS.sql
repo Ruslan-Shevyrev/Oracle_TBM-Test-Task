@@ -1,36 +1,30 @@
-drop table orders_detail;
+DROP TABLE orders_detail;
 
-drop table orders;
+DROP TABLE orders;
 
-drop table sku;
+DROP TABLE sku;
 
 -- Таблица с Товаром
 CREATE TABLE sku
 (
-  ID          NUMBER,
-  NAME        VARCHAR2(200) not null
+	ID		NUMBER,
+	NAME	VARCHAR2(200) NOT NULL
 );
 
-COMMENT ON TABLE sku IS 'Таблица каталог товаров.';
+ALTER TABLE sku ADD (CONSTRAINT pk_sku PRIMARY KEY (id));
 
+COMMENT ON TABLE sku IS 'Таблица каталог товаров';
 COMMENT ON COLUMN sku.id IS 'Первичный ключ';
-
-COMMENT ON COLUMN sku.name IS 'Название товара.';
-
-
-ALTER TABLE sku ADD (
-  CONSTRAINT pk_sku
-  PRIMARY KEY
-  (id));
+COMMENT ON COLUMN sku.name IS 'Название товара';
 
 -- Таблица заказа
 CREATE TABLE orders
 (
-  ID          NUMBER,
-  N_DOC       NUMBER,
-  DATE_DOC    DATE,
-  AMOUNT      NUMBER,
-  DISCOUNT    NUMBER
+	ID			NUMBER,
+	N_DOC		NUMBER,
+	DATE_DOC	DATE,
+	AMOUNT		NUMBER,
+	DISCOUNT	NUMBER
 );
 
 
