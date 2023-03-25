@@ -55,18 +55,7 @@ COMMENT ON COLUMN orders_detail.qty IS 'кол-во товара.';
 COMMENT ON COLUMN orders_detail.str_sum IS 'Сумма по строке с учетом скидки.';
 COMMENT ON COLUMN orders_detail.idx IS 'Порядковый номер строки заказа (не должно быть пропусков).';
 
-ALTER TABLE orders_detail ADD (
-  CONSTRAINT pk_orders_detail
-  PRIMARY KEY
-  (id));
-  
-  
-ALTER TABLE orders_detail ADD (
-  CONSTRAINT fk_orders_detail_sku 
-  FOREIGN KEY (id_sku) 
-  REFERENCES sku (id)
-  ENABLE VALIDATE,
-  CONSTRAINT fk_orders_detail_order 
-  FOREIGN KEY (id_order) 
-  REFERENCES orders (id)
-  ENABLE VALIDATE);
+ALTER TABLE orders_detail ADD (CONSTRAINT pk_orders_detail PRIMARY KEY (id));
+
+ALTER TABLE orders_detail ADD (CONSTRAINT fk_orders_detail_sku FOREIGN KEY (id_sku) REFERENCES sku (id) ENABLE VALIDATE,
+CONSTRAINT fk_orders_detail_order FOREIGN KEY (id_order) REFERENCES orders (id) ENABLE VALIDATE);
