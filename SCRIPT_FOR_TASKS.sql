@@ -27,52 +27,33 @@ CREATE TABLE orders
 	DISCOUNT	NUMBER
 );
 
-
 COMMENT ON TABLE orders IS 'Таблица содержащая заказы.';
-
 COMMENT ON COLUMN orders.id IS 'Первичный ключ';
-
 COMMENT ON COLUMN orders.n_doc IS '№ заказа.';
-
 COMMENT ON COLUMN orders.date_doc IS 'Дата заказа.';
-
 COMMENT ON COLUMN orders.amount IS 'Сумма заказа расчетное значение (сумма деталей заказа).';
-
 COMMENT ON COLUMN orders.discount IS 'Скидка в процентах от 0 до 100.';
 
-
-ALTER TABLE orders ADD (
-  CONSTRAINT pk_orders
-  PRIMARY KEY
-  (id));
+ALTER TABLE orders ADD (CONSTRAINT pk_orders PRIMARY KEY(id));
 
 CREATE TABLE orders_detail
 (
-  ID          NUMBER,
-  ID_ORDER    NUMBER not null,
-  ID_SKU      NUMBER not null,
-  PRICE       NUMBER,
-  QTY         NUMBER,
-  STR_SUM     NUMBER,
-  IDX         NUMBER 
-);
+	ID			NUMBER,
+	ID_ORDER	NUMBER NOT NULL,
+	ID_SKU		NUMBER NOT NULL,
+	PRICE		NUMBER,
+	QTY			NUMBER,
+	STR_SUM		NUMBER,
+	IDX			NUMBER);
 
 COMMENT ON TABLE orders_detail IS 'Таблица содержащая заказы.';
-
 COMMENT ON COLUMN orders_detail.id IS 'Первичный ключ';
-
 COMMENT ON COLUMN orders_detail.id_order IS 'тдентификатор заказа';
-
 COMMENT ON COLUMN orders_detail.id_sku IS 'идентификатор товара';
-
 COMMENT ON COLUMN orders_detail.price IS 'Цена товара за единицу.';
-
 COMMENT ON COLUMN orders_detail.qty IS 'кол-во товара.';
-
 COMMENT ON COLUMN orders_detail.str_sum IS 'Сумма по строке с учетом скидки.';
-
 COMMENT ON COLUMN orders_detail.idx IS 'Порядковый номер строки заказа (не должно быть пропусков).';
-
 
 ALTER TABLE orders_detail ADD (
   CONSTRAINT pk_orders_detail
