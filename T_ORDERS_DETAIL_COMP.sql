@@ -11,35 +11,34 @@ COMPOUND TRIGGER
 	nDISCOUNT			NUMBER;
 	nORDERS_DET_SUM		NUMBER;
 BEFORE EACH ROW IS
-  begin
-	    if INSERTING THEN	
-	    	--Блок для пересчета индексов
-	    		IDX_TABLE.EXTEND();
-			IDX_TABLE(I):= :NEW.ID_ORDER;
-			I:=I+1;
-			IS_INDEXIS:=TRUE;
-		
-			IF :NEW.ID IS NOT NULL THEN 
-				raise_application_error( -20555, 'ID запрещен для изменения' );
-			ELSE 
-				:NEW.ID := ID_SEQ.NEXTVAL;
-			END IF;
-	    end if;
-   
-	   	IF DELETING THEN
-	   		IDX_TABLE.EXTEND();
-	   		IDX_TABLE(I):= :OLD.ID_ORDER;
-	   		I:=I+1;
-	   		IS_INDEXIS:=TRUE;
-	   	END IF;
-   
-   	   	IF UPDATING THEN
-   	   		IF :NEW.ID IS NOT NULL AND :NEW.ID <> :OLD.ID THEN 
-				raise_application_error( -20555, 'ID запрещен для изменения' );
-			ELSE 
-				:NEW.ID:= :OLD.ID;
-			END IF;
+BEGIN
+	IF INSERTING THEN
+		--Блок для пересчета индексов
+		IDX_TABLE.EXTEND();
+		IDX_TABLE(I):= :NEW.ID_ORDER;
+		I:=I+1;
+		IS_INDEXIS:=TRUE;
 
+		IF :NEW.ID IS NOT NULL THEN
+			raise_application_error( -20555, 'ID запрещен для изменения' );
+		ELSE 
+			:NEW.ID := ID_SEQ.NEXTVAL;
+		END IF;
+	END IF;
+
+	IF DELETING THEN
+		IDX_TABLE.EXTEND();
+		IDX_TABLE(I):= :OLD.ID_ORDER;
+		I:=I+1;
+		IS_INDEXIS:=TRUE;
+	END IF;
+
+	IF UPDATING THEN
+		IF :NEW.ID IS NOT NULL AND :NEW.ID <> :OLD.ID THEN
+			raise_application_error( -20555, 'ID запрещен для изменения' );
+		ELSE 
+			:NEW.ID:= :OLD.ID;
+		END IF;
 
 	   		IS_INDEXIS:=FALSE;
 	  -- 2) При добавлении строки заказа, удалении строки заказа  или изменении цены или количества по строке заказа должна изменяться сумма заказа (orders.amount).
