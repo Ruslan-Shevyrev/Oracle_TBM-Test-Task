@@ -40,14 +40,19 @@ BEGIN
 			:NEW.ID:= :OLD.ID;
 		END IF;
 
-	   		IS_INDEXIS:=FALSE;
-	  -- 2) При добавлении строки заказа, удалении строки заказа  или изменении цены или количества по строке заказа должна изменяться сумма заказа (orders.amount).
-	   		IF (NVL(:NEW.PRICE, 0) <> nvl(:OLD.PRICE, 0)) OR (NVL(:NEW.QTY, 0) <> NVL(:OLD.QTY, 0)) THEN 
-			 
-			 	SELECT nvl(AMOUNT, 0), DISCOUNT INTO nAMOUNT, nDISCOUNT FROM orders WHERE ID = :OLD.ID_ORDER;
-		 	
-		 		nORDERS_DET_SUM := COALESCE(:NEW.PRICE, :OLD.PRICE, 0) * COALESCE(:NEW.QTY, :OLD.QTY, 0) * (1 - nDISCOUNT / 100);
-		 
+		IS_INDEXIS:=FALSE;
+		-- 2) При добавлении строки заказа, удалении строки заказа  или изменении цены или количества по строке заказа должна изменяться сумма заказа (orders.amount).
+			IF (NVL(:NEW.PRICE, 0) <> nvl(:OLD.PRICE, 0)) OR (NVL(:NEW.QTY, 0) <> NVL(:OLD.QTY, 0)) THEN
+
+				SELECT NVL(AMOUNT, 0), 
+						DISCOUNT 
+					INTO nAMOUNT, 
+						nDISCOUNT 
+					FROM orders 
+					WHERE ID = :OLD.ID_ORDER;
+
+				nORDERS_DET_SUM := COALESCE(:NEW.PRICE, :OLD.PRICE, 0) * COALESCE(:NEW.QTY, :OLD.QTY, 0) * (1 - nDISCOUNT / 100);
+
 				UPDATE ORDERS O SET 
 						O.AMOUNT = nAMOUNT - :OLD.STR_SUM + nORDERS_DET_SUM
 					WHERE O.ID = :OLD.ID_ORDER;
