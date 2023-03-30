@@ -59,20 +59,19 @@ BEGIN
 	-- 3) При изменении цены или количества по строке заказа должна автоматом пересчитываться сумма по строке заказа (orders_detail.str_sum).
 				:NEW.STR_SUM := nORDERS_DET_SUM;
 			 END IF;
-	   	END IF;
-	   
+		END IF;
+
 	-- 6) Сумма по строке вычисляется следующим образом = цена(orders_detail.price)*количество(orders_detail.qty)*(1-скидка(orders.descount)/100)
-   		IF INSERTING OR UPDATING THEN
-   			--Пересчет суммы
+		IF INSERTING OR UPDATING THEN
+			--Пересчет суммы
 			IF :NEW.STR_SUM IS NULL THEN 
 				SELECT DISCOUNT INTO nDISCOUNT FROM orders WHERE ID = :NEW.ID_ORDER;
-		 	
 		 		:NEW.STR_SUM := :NEW.PRICE * :NEW.QTY * (1 - nDISCOUNT / 100);
 			END IF;
 		END IF;
 
-  end before each row;
-  
+END BEFORE EACH ROW;
+
   after each row is
   BEGIN
 	--2) При добавлении строки заказа, удалении строки заказа  или изменении цены или количества по строке заказа должна изменяться сумма заказа (orders.amount).
