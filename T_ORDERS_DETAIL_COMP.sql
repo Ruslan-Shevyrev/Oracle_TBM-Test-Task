@@ -69,21 +69,20 @@ BEGIN
 		 		:NEW.STR_SUM := :NEW.PRICE * :NEW.QTY * (1 - nDISCOUNT / 100);
 			END IF;
 		END IF;
-
 END BEFORE EACH ROW;
 
-  after each row is
-  BEGIN
+AFTER EACH ROW IS
+BEGIN
 	--2) При добавлении строки заказа, удалении строки заказа  или изменении цены или количества по строке заказа должна изменяться сумма заказа (orders.amount).
-	  	IF INSERTING THEN
-	  		UPDATE ORDERS O SET O.AMOUNT = ((SELECT nvl(AMOUNT, 0) FROM orders WHERE ID = :NEW.ID_ORDER) + :NEW.STR_SUM) WHERE O.ID = :NEW.ID_ORDER;
-	  	END IF;
-  
-	  	IF DELETING THEN
-	  		UPDATE ORDERS O SET O.AMOUNT = ((SELECT sum(AMOUNT) FROM orders WHERE ID = :OLD.ID_ORDER) - :OLD.STR_SUM) WHERE O.ID = :OLD.ID_ORDER;
-	  	END IF;
-  END after each row;
- 
+		IF INSERTING THEN
+			UPDATE ORDERS O SET O.AMOUNT = ((SELECT NVL(AMOUNT, 0) FROM orders WHERE ID = :NEW.ID_ORDER) + :NEW.STR_SUM) WHERE O.ID = :NEW.ID_ORDER;
+		END IF;
+
+		IF DELETING THEN
+			UPDATE ORDERS O SET O.AMOUNT = ((SELECT SUM(AMOUNT) FROM orders WHERE ID = :OLD.ID_ORDER) - :OLD.STR_SUM) WHERE O.ID = :OLD.ID_ORDER;
+		END IF;
+END AFTER EACH ROW;
+
   after statement is
   BEGIN
 	--4) Поле в строке заказа orders_detail.idx  порядковый номер должен формироваться автоматически и в нумерации строк заказа не должно быть пропусков. Последовательность должна быть строго 1,2, … количество строк заказа.
