@@ -83,18 +83,29 @@ BEGIN
 		END IF;
 END AFTER EACH ROW;
 
-  after statement is
-  BEGIN
+AFTER STATEMENT IS
+BEGIN
 	--4) Поле в строке заказа orders_detail.idx  порядковый номер должен формироваться автоматически и в нумерации строк заказа не должно быть пропусков. Последовательность должна быть строго 1,2, … количество строк заказа.
-	IF IS_INDEXIS THEN 
+	IF IS_INDEXIS THEN
 		FOR I IN IDX_TABLE.FIRST..IDX_TABLE.LAST LOOP
 			IDX_NUM:=1;
-		 	FOR c IN (SELECT OD.IDX, OD.ID FROM ORDERS_DETAIL OD WHERE OD.ID_ORDER = IDX_TABLE(I) ORDER BY OD.IDX NULLS LAST) LOOP
-		 		UPDATE ORDERS_DETAIL SET IDX = IDX_NUM WHERE ID = c.ID;
+
+		 	FOR c IN (SELECT OD.IDX, 
+							OD.ID
+						FROM ORDERS_DETAIL OD
+						WHERE OD.ID_ORDER = IDX_TABLE(I)
+						ORDER BY OD.IDX NULLS LAST)
+			LOOP
+		 		UPDATE ORDERS_DETAIL
+					SET IDX = IDX_NUM
+					WHERE ID = c.ID;
 		 		IDX_NUM:=IDX_NUM+1;
 		 	END LOOP;
+
 		END LOOP;
+
 		IDX_TABLE.DELETE;
 	END IF;
-  end after statement;
-end T_ORDERS_DETAIL_COMP;
+END AFTER STATEMENT;
+
+END T_ORDERS_DETAIL_COMP;
