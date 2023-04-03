@@ -11,11 +11,11 @@
 6) Сумма по строке вычисляется следующим образом = цена(ORDERS_DETAIL.PRICE)*количество(ORDERS_DETAIL.QTY)*(1-скидка(ORDERS.DISCOUNT)/100)
 7) Ограничение:
 	Изменять можно только следующие поля
-		ORDERS.n_doc
-		ORDERS.date_doc
+		ORDERS.N_DOC
+		ORDERS.DATE_DOC
 		ORDERS.DISCOUNT
-		ORDERS_DETAIL.id_order
-		ORDERS_DETAIL.price
-		ORDERS_DETAIL.qty
-		ORDERS_DETAIL.id_order
+		ORDERS_DETAIL.ID_ORDER
+		ORDERS_DETAIL.PRICE
+		ORDERS_DETAIL.QTY
+		ORDERS_DETAIL.ID_ORDER
 	остальные должны пересчитываться автоматически.
