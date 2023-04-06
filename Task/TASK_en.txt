@@ -1,3 +1,3 @@
 In the SCRIPT_FOR_TASKS.sql file, the script for creating three tables.
 
-You need to create triggers that will process the logic and statistics of data in data tables.
+You need to create triggers that will process the logic and statistics of data in this tables.
