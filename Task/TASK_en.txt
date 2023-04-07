@@ -1,3 +1,7 @@
 In the SCRIPT_FOR_TASKS.sql file, the script for creating three tables.
 
 You need to create triggers that will process the logic and statistics of data in this tables.
+
+Functional requirements:
+1) When changing the discount field (ORDERS.DISCOUNT), the amounts by order lines (ORDERS_DETAIL.STR_SUM) must be recalculated.
+2) When adding row order, deleting row order or changing price or count by row order, order sum (ORDERS.AMOUNT) must be recalculated.
