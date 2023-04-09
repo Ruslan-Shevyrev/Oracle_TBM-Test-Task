@@ -6,4 +6,4 @@ Functional requirements:
 1) When changing the discount field (ORDERS.DISCOUNT), row orders sum (ORDERS_DETAIL.STR_SUM) must be recalculated.
 2) When adding row order, deleting row order or changing row orders price or count, order sum (ORDERS.AMOUNT) must be recalculated.
 3) When changing row orders price or count automatic must be recalculated row orders sum (ORDERS_DETAIL.STR_SUM).
-4) Row orders field ORDERS_DETAIL.IDX must be automatic generate serial number and serial number must be no gaps (sequence must be 1,2, … row orders count). 
+4) Row orders field ORDERS_DETAIL.IDX must be automatic generate serial number and serial number must be no gaps (sequence must be 1,2, … row orders count).
