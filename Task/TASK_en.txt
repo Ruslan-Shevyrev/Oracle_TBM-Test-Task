@@ -9,3 +9,13 @@ Functional requirements:
 4) Row orders field ORDERS_DETAIL.IDX must be automatic generate serial number and serial number must be no gaps (sequence must be 1,2, … row orders count).
 5) Discount value (ORDERS.DISCOUNT) can be between 0 and 100.
 6) Row sum calculated as price(ORDERS_DETAIL.PRICE)*count(ORDERS_DETAIL.QTY)*(1-discount(ORDERS.DISCOUNT)/100).
+7) Restrictions:
+	You can change only next fields:
+		ORDERS.N_DOC
+		ORDERS.DATE_DOC
+		ORDERS.DISCOUNT
+		ORDERS_DETAIL.ID_ORDER
+		ORDERS_DETAIL.PRICE
+		ORDERS_DETAIL.QTY
+		ORDERS_DETAIL.ID_ORDER.
+	Other fields must be calculated automatically.
