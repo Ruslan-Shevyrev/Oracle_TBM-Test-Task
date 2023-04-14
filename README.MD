@@ -25,3 +25,10 @@ Functional requirements:
 		ORDERS_DETAIL.QTY\
 		ORDERS_DETAIL.ID_ORDER.\
 	Other fields must be calculated automatically.
+	
+<table>
+	<tr>
+		<td valign="center" width="49%"><img src="https://github.com/Ruslan-Shevyrev/Ruslan-Shevyrev/blob/main/logoRS/logo_mini.gif" title="logo"></td>
+		<td valign="center" width="49%"><img src="https://github.com/Ruslan-Shevyrev/Ruslan-Shevyrev/blob/main/logoRS/logoRS_FULL.png" title="RuslanShevyrev"></td>
+	</tr>
+</table>
