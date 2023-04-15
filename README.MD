@@ -4,12 +4,12 @@ TBM Test Task.
 
 ## English
 
-In the SCRIPT_FOR_TASKS.sql file there is a script for creating three tables.
+In the **SCRIPT_FOR_TASKS.sql** file there is a script for creating three tables.
 
 You need to create triggers that will process the logic and statistics of data in this tables.
 
 Functional requirements:
-1) When changing the discount field (ORDERS.DISCOUNT), row orders sum (ORDERS_DETAIL.STR_SUM) must be recalculated.
+1) When changing the discount field (**ORDERS.DISCOUNT**), row orders sum (**ORDERS_DETAIL.STR_SUM**) must be recalculated.
 2) When adding row order, deleting row order or changing row order price or count, order sum (ORDERS.AMOUNT) must be recalculated.
 3) When changing row order price or count, row order sum (ORDERS_DETAIL.STR_SUM) must be recalculated automatically.
 4) Field Serial Number (ORDERS_DETAIL.IDX) must be generated automatically and row number must have no gaps (sequence must be 1,2, … row orders count).
