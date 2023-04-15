@@ -14,7 +14,7 @@ Functional requirements:
 3) When changing row order price or count, row order sum (**ORDERS_DETAIL.STR_SUM**) must be recalculated automatically.
 4) Field Serial Number (**ORDERS_DETAIL.IDX**) must be generated automatically and row number must have no gaps (sequence must be 1,2, … row orders count).
 5) Discount value (**ORDERS.DISCOUNT**) can be between 0 and 100.
-6) Row sum is calculated as price(**ORDERS_DETAIL.PRICE**)*count(**ORDERS_DETAIL.QTY**)*(1-discount(**ORDERS.DISCOUNT**)/100).
+6) Row sum is calculated as price(**ORDERS_DETAIL.PRICE**)\*count(**ORDERS_DETAIL.QTY**)\*(1-discount(**ORDERS.DISCOUNT**)/100).
 7) Restrictions:\
 	You can change only the following fields:\
 		ORDERS.N_DOC\
