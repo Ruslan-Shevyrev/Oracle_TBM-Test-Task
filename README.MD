@@ -50,6 +50,8 @@ Functional requirements:
 		ORDERS_DETAIL.ID_ORDER.\
 	Остальные должны пересчитываться автоматически.
 	
+:heavy_exclamation_mark: The solution is in the **Solution** folder.
+
 <table>
 	<tr>
 		<td valign="center" width="49%"><img src="https://github.com/Ruslan-Shevyrev/Ruslan-Shevyrev/blob/main/logoRS/logo_mini.gif" title="logo"></td>
