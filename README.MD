@@ -49,8 +49,10 @@ Functional requirements:
 		ORDERS_DETAIL.QTY\
 		ORDERS_DETAIL.ID_ORDER.\
 	Остальные должны пересчитываться автоматически.
-	
-:heavy_exclamation_mark: The solution is in the **Solution** folder.
+
+## Solution
+
+The solution is in the **Solution** folder.
 
 <table>
 	<tr>
